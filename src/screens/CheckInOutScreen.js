@@ -41,6 +41,7 @@ const CheckInOutScreen = ({ navigation }) => {
   const subtextColor = isDark ? colors.neutral[300] : colors.neutral[500];
   const borderColor = isDark ? '#1f2b45' : colors.neutral[200];
   const childCardBg = panelColor;
+  const cardBg = panelColor;
 
   useEffect(() => {
     loadChildren();
@@ -137,63 +138,63 @@ const CheckInOutScreen = ({ navigation }) => {
   const checkedIn = children.filter((c) => c.isCheckedIn);
 
   const renderChildItem = ({ item, isCheckedInList }) => (
-  <View style={[styles.childCard, { backgroundColor: childCardBg, borderColor, borderWidth: 1 }]}>
-    <View style={styles.childInfo}>
-      <Avatar
-        initials={item.avatar}
-        size="medium"
-        variant={isCheckedInList ? 'success' : 'neutral'}
-      />
-      <View style={styles.childDetails}>
-        <Text style={[styles.childName, { color: textColor }]}>{item.name}</Text>
-        <Text style={[styles.childMeta, { color: subtextColor }]}>{item.age} ar - {item.group}</Text>
-      </View>
-    </View>
-    
-    {isCheckedInList ? (
-      <View style={styles.checkInInfo}>
-        <View style={[styles.timeTag, { backgroundColor: isDark ? colors.dark.success.muted : colors.success[50] }]}>
-          <Ionicons name="time-outline" size={14} color={isDark ? colors.dark.success.default : colors.success[600]} />
-          <Text style={[styles.timeText, { color: isDark ? colors.dark.success.default : colors.success[700] }]}>{item.checkedInAt}</Text>
+    <View style={[styles.childCard, { backgroundColor: childCardBg, borderColor, borderWidth: 1 }]}>
+      <View style={styles.childInfo}>
+        <Avatar
+          initials={item.avatar}
+          size="medium"
+          variant={isCheckedInList ? 'success' : 'neutral'}
+        />
+        <View style={styles.childDetails}>
+          <Text style={[styles.childName, { color: textColor }]}>{item.name}</Text>
+          <Text style={[styles.childMeta, { color: subtextColor }]}>{item.age} ar - {item.group}</Text>
         </View>
+      </View>
+      
+      {isCheckedInList ? (
+        <View style={styles.checkInInfo}>
+          <View style={[styles.timeTag, { backgroundColor: isDark ? colors.dark.success.muted : colors.success[50] }]}>
+            <Ionicons name="time-outline" size={14} color={isDark ? colors.dark.success.default : colors.success[600]} />
+            <Text style={[styles.timeText, { color: isDark ? colors.dark.success.default : colors.success[700] }]}>{item.checkedInAt}</Text>
+          </View>
+          <TouchableOpacity
+            style={[styles.checkOutButton, { 
+              borderColor,
+              backgroundColor: isDark ? surfaceColor : colors.white,
+              opacity: actionLoading === `checkout-${item.id}` ? 0.7 : 1
+            }]}
+            onPress={() => handleCheckOut(item)}
+            disabled={actionLoading === `checkout-${item.id}`}
+            activeOpacity={0.7}
+          >
+            {actionLoading === `checkout-${item.id}` ? (
+              <ActivityIndicator size="small" color={isDark ? colors.neutral[300] : colors.neutral[600]} />
+            ) : (
+              <Text style={[styles.checkOutButtonText, { color: isDark ? colors.neutral[200] : colors.neutral[700] }]}>Sjekk ut</Text>
+            )}
+          </TouchableOpacity>
+        </View>
+      ) : (
         <TouchableOpacity
-          style={[styles.checkOutButton, { 
-            borderColor,
-            backgroundColor: isDark ? surfaceColor : colors.white,
-            opacity: actionLoading === checkout- ? 0.7 : 1
+          style={[styles.checkInButton, {
+            opacity: actionLoading === `checkin-${item.id}` ? 0.7 : 1
           }]}
-          onPress={() => handleCheckOut(item)}
-          disabled={actionLoading === checkout-}
+          onPress={() => handleCheckIn(item)}
+          disabled={actionLoading === `checkin-${item.id}`}
           activeOpacity={0.7}
         >
-          {actionLoading === checkout- ? (
-            <ActivityIndicator size="small" color={isDark ? colors.neutral[300] : colors.neutral[600]} />
+          {actionLoading === `checkin-${item.id}` ? (
+            <ActivityIndicator size="small" color={colors.white} />
           ) : (
-            <Text style={[styles.checkOutButtonText, { color: isDark ? colors.neutral[200] : colors.neutral[700] }]}>Sjekk ut</Text>
+            <>
+              <Ionicons name="log-in-outline" size={18} color={colors.white} />
+              <Text style={styles.checkInButtonText}>Sjekk inn</Text>
+            </>
           )}
         </TouchableOpacity>
-      </View>
-    ) : (
-      <TouchableOpacity
-        style={[styles.checkInButton, {
-          opacity: actionLoading === checkin- ? 0.7 : 1
-        }]}
-        onPress={() => handleCheckIn(item)}
-        disabled={actionLoading === checkin-}
-        activeOpacity={0.7}
-      >
-        {actionLoading === checkin- ? (
-          <ActivityIndicator size="small" color={colors.white} />
-        ) : (
-          <>
-            <Ionicons name="log-in-outline" size={18} color={colors.white} />
-            <Text style={styles.checkInButtonText}>Sjekk inn</Text>
-          </>
-        )}
-      </TouchableOpacity>
-    )}
-  </View>
-);
+      )}
+    </View>
+  );
 
   const renderList = (data, title, subtitle, isCheckedInList, emptyIcon, emptyText) => (
     <View style={[styles.listContainer, isLargeScreen && styles.listContainerLarge, { backgroundColor: cardBg }]}>
