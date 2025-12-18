@@ -239,6 +239,7 @@ const DashboardScreen = ({ navigation }) => {
             ? { icon: 'business', label: settings.kindergartenName || '' }
             : null
         }
+        isDark={isDark}
       >
         {user?.role === 'admin' && (
           <TouchableOpacity
@@ -406,11 +407,9 @@ const styles = StyleSheet.create({
   welcomeGreeting: {
     fontSize: 26,
     fontWeight: '700',
-    color: textColor,
   },
   welcomeDate: {
     fontSize: 15,
-    color: subtextColor,
     marginTop: 4,
     textTransform: 'capitalize',
   },
@@ -438,7 +437,7 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 20,
     borderWidth: 1,
-    borderColor,
+    borderColor: colors.neutral[200],
   },
   kindergartenContent: {
     flexDirection: 'row',
@@ -464,7 +463,6 @@ const styles = StyleSheet.create({
   kindergartenName: {
     fontSize: 17,
     fontWeight: '700',
-    color: textColor,
   },
   kindergartenMeta: {
     flexDirection: 'row',
@@ -474,7 +472,6 @@ const styles = StyleSheet.create({
   },
   kindergartenHours: {
     fontSize: 13,
-    color: subtextColor,
   },
   statsContainer: {
     gap: 12,
@@ -487,7 +484,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     gap: 14,
     borderWidth: 1,
-    borderColor,
+    borderColor: colors.neutral[200],
   },
   statIconContainer: {
     borderRadius: 14,
@@ -518,22 +515,20 @@ const styles = StyleSheet.create({
   listTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: textColor,
   },
   listCount: {
     fontSize: 14,
-    color: subtextColor,
   },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#101a2d',
+    backgroundColor: colors.white,
     borderRadius: 14,
     paddingHorizontal: 16,
     height: 52,
     gap: 12,
     borderWidth: 1,
-    borderColor: borderColor,
+    borderColor: colors.neutral[200],
   },
   searchWrapper: {
     paddingHorizontal: 24,
@@ -543,7 +538,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: textColor,
+    color: colors.neutral[800],
   },
   childCardWrapper: {
     flex: 1,
@@ -604,11 +599,9 @@ const styles = StyleSheet.create({
   childName: {
     fontSize: 16,
     fontWeight: '600',
-    color: textColor,
   },
   childMeta: {
     fontSize: 13,
-    color: subtextColor,
     marginTop: 2,
   },
   childStatus: {
@@ -653,7 +646,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor,
+    borderColor: colors.neutral[200],
   },
   emptyIcon: {
     width: 80,
@@ -667,12 +660,10 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: textColor,
     marginBottom: 8,
   },
   emptyText: {
     fontSize: 14,
-    color: subtextColor,
     textAlign: 'center',
   },
 });
