@@ -101,7 +101,7 @@ const CheckInOutScreen = ({ navigation }) => {
       });
       await loadChildren();
     } catch (error) {
-      console.error('âŒ Error checking in:', error);
+      console.error('Error checking in:', error);
       alert(`Kunne ikke sjekke inn ${child.name}. Feil: ${error.message}`);
     } finally {
       setActionLoading(null);
@@ -127,7 +127,7 @@ const CheckInOutScreen = ({ navigation }) => {
       });
       await loadChildren();
     } catch (error) {
-      console.error('âŒ Error checking out:', error);
+      console.error('Error checking out:', error);
       alert(`Kunne ikke sjekke ut ${child.name}. Feil: ${error.message}`);
     } finally {
       setActionLoading(null);
@@ -277,7 +277,7 @@ const CheckInOutScreen = ({ navigation }) => {
           <View style={[styles.statBadge, { backgroundColor: isDark ? colors.dark.success.muted : colors.success[50], borderColor }]}>
             <Ionicons name="checkmark-circle" size={isSmallScreen ? 14 : 16} color={isDark ? colors.dark.success.default : colors.success[600]} />
             <Text style={[styles.statText, { color: isDark ? colors.dark.success.default : colors.success[700] }]}>
-              {checkedIn.length} inne
+              {checkedIn.length} Inne
             </Text>
           </View>
           <View style={[styles.statBadge, { backgroundColor: isDark ? colors.dark.primary.muted : colors.primary[50], borderColor }]}>
@@ -314,7 +314,7 @@ const CheckInOutScreen = ({ navigation }) => {
         )}
         {renderList(
           checkedIn,
-          'Inne¥',
+          'Inne',
           `${checkedIn.length} barn`,
           true,
           'checkmark-circle-outline',
@@ -528,5 +528,8 @@ const styles = StyleSheet.create({
 });
 
 export default CheckInOutScreen;
+
+
+
 
 
