@@ -197,7 +197,11 @@ const CheckInOutScreen = ({ navigation }) => {
   );
 
   const renderList = (data, title, subtitle, isCheckedInList, emptyIcon, emptyText) => (
-    <View style={[styles.listContainer, isLargeScreen && styles.listContainerLarge, { backgroundColor: cardBg }]}>
+    <View style={[
+      styles.listContainer,
+      isLargeScreen && styles.listContainerLarge,
+      { backgroundColor: cardBg, borderColor },
+    ]}>
       <View style={[
         styles.listHeader,
         isCheckedInList 
@@ -264,28 +268,26 @@ const CheckInOutScreen = ({ navigation }) => {
 
   return (
     <View style={[styles.container, { backgroundColor: bgColor }]}>
-      {/* Header */}
-      <View style={[styles.header, { flexDirection: isLargeScreen ? 'row' : 'column', alignItems: isLargeScreen ? 'center' : 'flex-start' }]}>
-        <View>
-          <Text style={[styles.title, { color: textColor, fontSize: isSmallScreen ? 24 : 28 }]}>{t('checkInOut.title')}</Text>
-          <Text style={[styles.subtitle, { color: subtextColor }]}>{t('checkInOut.subtitle')}</Text>
-        </View>
-        
-        <View style={styles.statsRow}>
-          <View style={[styles.statBadge, { backgroundColor: isDark ? colors.dark.primary.muted : colors.primary[50] }]}>
-            <Ionicons name="people" size={isSmallScreen ? 14 : 16} color={isDark ? colors.dark.primary.default : colors.primary[600]} />
-            <Text style={[styles.statText, { color: isDark ? colors.dark.primary.default : colors.primary[700] }]}>
-              {children.length} totalt
-            </Text>
-          </View>
-          <View style={[styles.statBadge, { backgroundColor: isDark ? colors.dark.success.muted : colors.success[50] }]}>
+      <HeroBanner
+        title={t('checkInOut.title')}
+        subtitle={t('checkInOut.subtitle')}
+        badge={{ icon: 'people', label: `${children.length} barn totalt` }}
+      >
+        <View style={styles.heroActions}>
+          <View style={[styles.statBadge, { backgroundColor: isDark ? colors.dark.success.muted : colors.success[50], borderColor }]}>
             <Ionicons name="checkmark-circle" size={isSmallScreen ? 14 : 16} color={isDark ? colors.dark.success.default : colors.success[600]} />
             <Text style={[styles.statText, { color: isDark ? colors.dark.success.default : colors.success[700] }]}>
               {checkedIn.length} inne
             </Text>
           </View>
+          <View style={[styles.statBadge, { backgroundColor: isDark ? colors.dark.primary.muted : colors.primary[50], borderColor }]}>
+            <Ionicons name="log-in-outline" size={isSmallScreen ? 14 : 16} color={isDark ? colors.dark.primary.default : colors.primary[600]} />
+            <Text style={[styles.statText, { color: isDark ? colors.dark.primary.default : colors.primary[700] }]}>
+              {notCheckedIn.length} venter
+            </Text>
+          </View>
         </View>
-      </View>
+      </HeroBanner>
 
       {/* Success toast */}
       {recentAction && (
@@ -329,22 +331,10 @@ const styles = StyleSheet.create({
     width: '100%',
     overflow: 'hidden',
   },
-  header: {
-    justifyContent: 'space-between',
-    padding: 24,
-    paddingBottom: 16,
-    gap: 16,
-  },
-  title: {
-    fontWeight: '700',
-  },
-  subtitle: {
-    fontSize: 14,
-    marginTop: 4,
-  },
-  statsRow: {
+  heroActions: {
     flexDirection: 'row',
-    gap: 12,
+    gap: 10,
+    alignItems: 'center',
   },
   statBadge: {
     flexDirection: 'row',
@@ -353,6 +343,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 8,
     borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.08)',
   },
   statText: {
     fontSize: 14,
@@ -399,11 +391,8 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 20,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.06,
-    shadowRadius: 12,
-    elevation: 3,
+    borderWidth: 1,
+    borderColor,
   },
   listContainerLarge: {
     maxWidth: '50%',
