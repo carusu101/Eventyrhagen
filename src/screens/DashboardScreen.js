@@ -102,9 +102,8 @@ const DashboardScreen = ({ navigation }) => {
   const numColumns = isLargeScreen ? 2 : 1;
 
   // Theme palette for dashboard
-  const bgColor = isDark ? '#0c1424' : colors.neutral[50];
-  const surfaceColor = isDark ? '#111a2e' : colors.white;
-  const elevatedColor = isDark ? '#0f192c' : colors.white;
+  const bgColor = isDark ? '#0b1020' : colors.neutral[50];
+  const surfaceColor = isDark ? '#101a2d' : colors.white;
   const panelColor = isDark ? '#0d1728' : colors.white;
   const cardBg = surfaceColor;
   const textColor = isDark ? colors.neutral[50] : colors.neutral[900];
@@ -407,11 +406,11 @@ const styles = StyleSheet.create({
   welcomeGreeting: {
     fontSize: 26,
     fontWeight: '700',
-    color: colors.neutral[800],
+    color: textColor,
   },
   welcomeDate: {
     fontSize: 15,
-    color: colors.neutral[500],
+    color: subtextColor,
     marginTop: 4,
     textTransform: 'capitalize',
   },
@@ -439,6 +438,7 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 20,
     borderWidth: 1,
+    borderColor,
   },
   kindergartenContent: {
     flexDirection: 'row',
@@ -464,7 +464,7 @@ const styles = StyleSheet.create({
   kindergartenName: {
     fontSize: 17,
     fontWeight: '700',
-    color: colors.neutral[800],
+    color: textColor,
   },
   kindergartenMeta: {
     flexDirection: 'row',
@@ -474,7 +474,7 @@ const styles = StyleSheet.create({
   },
   kindergartenHours: {
     fontSize: 13,
-    color: colors.neutral[500],
+    color: subtextColor,
   },
   statsContainer: {
     gap: 12,
@@ -487,6 +487,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     gap: 14,
     borderWidth: 1,
+    borderColor,
   },
   statIconContainer: {
     borderRadius: 14,
@@ -517,22 +518,22 @@ const styles = StyleSheet.create({
   listTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: colors.neutral[800],
+    color: textColor,
   },
   listCount: {
     fontSize: 14,
-    color: colors.neutral[500],
+    color: subtextColor,
   },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.white,
+    backgroundColor: '#101a2d',
     borderRadius: 14,
     paddingHorizontal: 16,
     height: 52,
     gap: 12,
     borderWidth: 1,
-    borderColor: colors.neutral[200],
+    borderColor: borderColor,
   },
   searchWrapper: {
     paddingHorizontal: 24,
@@ -542,7 +543,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: colors.neutral[800],
+    color: textColor,
   },
   childCardWrapper: {
     flex: 1,
@@ -554,6 +555,7 @@ const styles = StyleSheet.create({
     padding: 18,
     flexDirection: 'row',
     alignItems: 'center',
+    borderWidth: 1,
   },
   childCardInner: {
     flex: 1,
@@ -602,11 +604,11 @@ const styles = StyleSheet.create({
   childName: {
     fontSize: 16,
     fontWeight: '600',
-    color: colors.neutral[800],
+    color: textColor,
   },
   childMeta: {
     fontSize: 13,
-    color: colors.neutral[500],
+    color: subtextColor,
     marginTop: 2,
   },
   childStatus: {
@@ -651,6 +653,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     borderRadius: 20,
     borderWidth: 1,
+    borderColor,
   },
   emptyIcon: {
     width: 80,
@@ -664,12 +667,12 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: colors.neutral[800],
+    color: textColor,
     marginBottom: 8,
   },
   emptyText: {
     fontSize: 14,
-    color: colors.neutral[500],
+    color: subtextColor,
     textAlign: 'center',
   },
 });
