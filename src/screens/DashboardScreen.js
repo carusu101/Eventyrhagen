@@ -240,6 +240,7 @@ const DashboardScreen = ({ navigation }) => {
             ? { icon: 'business', label: settings.kindergartenName || '' }
             : null
         }
+        isDark={isDark}
       >
         {user?.role === 'admin' && (
           <TouchableOpacity

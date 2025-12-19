@@ -97,6 +97,7 @@ const AddChildScreen = ({ navigation }) => {
           title={t('addChild.title')}
           subtitle={t('addChild.subtitle')}
           badge={{ icon: 'people', label: t('addChild.childInfo') }}
+          isDark={isDark}
         />
         {/* Back Button */}
         <TouchableOpacity

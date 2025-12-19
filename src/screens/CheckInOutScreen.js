@@ -272,6 +272,7 @@ const CheckInOutScreen = ({ navigation }) => {
         title={t('checkInOut.title')}
         subtitle={t('checkInOut.subtitle')}
         badge={{ icon: 'people', label: `${children.length} barn totalt` }}
+        isDark={isDark}
       >
         <View style={styles.heroActions}>
           <View style={[styles.statBadge, { backgroundColor: isDark ? colors.dark.success.muted : colors.success[50], borderColor }]}>

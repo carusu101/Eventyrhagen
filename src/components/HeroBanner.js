@@ -4,10 +4,18 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme';
 
-const HeroBanner = ({ title, subtitle, badge, children }) => {
+const HeroBanner = ({ title, subtitle, badge, children, isDark }) => {
+  const gradient = isDark
+    ? ['#0f1f39', '#0a1631', '#081126']
+    : ['#eef2ff', '#eaf0ff', '#e2e8ff'];
+  const titleColor = isDark ? colors.white : colors.neutral[900];
+  const subtitleColor = isDark ? 'rgba(255,255,255,0.85)' : colors.neutral[600];
+  const badgeColor = isDark ? 'rgba(255,255,255,0.12)' : '#e6edff';
+  const badgeTextColor = isDark ? colors.white : colors.neutral[800];
+
   return (
     <LinearGradient
-      colors={['#0f1f39', '#0a1631', '#081126']}
+      colors={gradient}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={styles.hero}
@@ -15,13 +23,13 @@ const HeroBanner = ({ title, subtitle, badge, children }) => {
       <View style={styles.content}>
         <View style={styles.textBlock}>
           {badge ? (
-            <View style={styles.badge}>
-              <Ionicons name={badge.icon || 'business'} size={14} color={colors.white} />
-              <Text style={styles.badgeText}>{badge.label}</Text>
+            <View style={[styles.badge, { backgroundColor: badgeColor }]}>
+              <Ionicons name={badge.icon || 'business'} size={14} color={badgeTextColor} />
+              <Text style={[styles.badgeText, { color: badgeTextColor }]}>{badge.label}</Text>
             </View>
           ) : null}
-          <Text style={styles.title}>{title}</Text>
-          {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
+          <Text style={[styles.title, { color: titleColor }]}>{title}</Text>
+          {subtitle ? <Text style={[styles.subtitle, { color: subtitleColor }]}>{subtitle}</Text> : null}
         </View>
         {children}
       </View>
@@ -55,17 +63,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   badgeText: {
-    color: colors.white,
     fontWeight: '600',
     fontSize: 13,
   },
   title: {
-    color: colors.white,
     fontSize: 24,
     fontWeight: '800',
   },
   subtitle: {
-    color: 'rgba(255,255,255,0.85)',
     fontSize: 14,
   },
 });
