@@ -1,3 +1,18 @@
+https://eventyrhagen-nine.vercel.app/
+Login:
+
+admin:
+admin@barnehagen.no
+password123
+
+staff:
+lars@barnehagen.no
+password123
+
+forelder:
+hege.nilsen@example.com
+password123
+
 # Henteklar - Krysselista
 
 En moderne, kryssplattform app for barnehage inn/ut-sjekking. Bygget med React Native og Expo for å støtte Web, iOS og Android.
